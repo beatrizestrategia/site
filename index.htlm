@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#161616">
+<title>BEATRIZ — Estrategista de Marca</title>
+<meta name="description" content="Sua marca não está invisível. Está mal enquadrada. Diagnóstico de Percepção gratuito em 1 minuto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@1,600;1,700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --preto:#161616;
+  --branco:#FFFFFF;
+  --serif:'Cormorant',serif;
+  --sans:'Barlow Condensed',sans-serif;
+  --dots:radial-gradient(circle,var(--preto) 1.5px,transparent 1.6px);
+  --stars:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cpath d='M22 15l1.9 4.2 4.6.5-3.4 3.1.9 4.5L22 25l-4 2.3.9-4.5-3.4-3.1 4.6-.5z' fill='%23161616'/%3E%3C/svg%3E");
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--branco);color:var(--preto);font-family:var(--serif);overflow-x:hidden}
+::selection{background:var(--preto);color:var(--branco)}
+img{display:block;max-width:100%}
+b,strong{font-weight:700}
+
+#flash{position:fixed;inset:0;background:var(--branco);opacity:0;pointer-events:none;z-index:1001}
+#flash.dispara{animation:disparo .9s cubic-bezier(.2,0,.3,1)}
+@keyframes disparo{0%{opacity:0}14%{opacity:1}30%{opacity:.85}100%{opacity:0}}
+
+#intro{
+  position:fixed;inset:0;z-index:1000;background:var(--preto);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  animation:some .5s ease 1.7s forwards;
+}
+#intro .nome{
+  font-family:var(--sans);font-weight:700;font-size:clamp(1.2rem,6vw,1.9rem);
+  letter-spacing:.55em;text-transform:uppercase;text-indent:.55em;color:var(--branco);
+  opacity:0;animation:surge 1s ease .2s forwards;
+}
+#intro .sub{
+  font-family:var(--sans);font-weight:700;font-size:.62rem;
+  letter-spacing:.45em;text-transform:uppercase;text-indent:.45em;opacity:0;color:var(--branco);
+  animation:surge .8s ease .6s forwards;
+}
+#intro .risco{width:0;height:1px;background:var(--branco);animation:cresce .9s cubic-bezier(.7,0,.2,1) .5s forwards}
+@keyframes surge{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes cresce{to{width:110px}}
+@keyframes some{to{opacity:0;visibility:hidden}}
+
+.masthead{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 22px;
+  font-family:var(--sans);font-weight:600;font-size:.6rem;
+  letter-spacing:.3em;text-transform:uppercase;
+  mix-blend-mode:difference;color:#fff;
+}
+.rec{display:flex;align-items:center;gap:7px}
+.rec i{width:5px;height:5px;border-radius:50%;background:#fff;animation:pisca 1.4s steps(1) infinite}
+@keyframes pisca{50%{opacity:.15}}
+
+.centro{max-width:620px;margin:0 auto;text-align:center}
+section,header{padding:72px 24px;position:relative}
+.mini{
+  font-family:var(--sans);font-weight:700;font-size:.62rem;
+  letter-spacing:.42em;text-transform:uppercase;text-indent:.42em;
+}
+.rev{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.rev.on{opacity:1;transform:none}
+
+.fundo-dots{
+  background-image:radial-gradient(circle at 50% 42%,var(--branco) 0 34%,rgba(255,255,255,.86) 52%,rgba(255,255,255,0) 74%),var(--dots);
+  background-size:auto,26px 26px;
+  background-color:var(--branco);
+}
+.fundo-stars{
+  background-image:radial-gradient(circle at 50% 45%,var(--branco) 0 36%,rgba(255,255,255,.86) 54%,rgba(255,255,255,0) 76%),var(--stars);
+  background-size:auto,44px 44px;
+  background-color:var(--branco);
+}
+.escura{background:var(--preto);color:var(--branco)}
+
+.sticker{
+  background:var(--branco);
+  border:2px solid var(--preto);
+  box-shadow:5px 5px 0 var(--preto);
+}
+.escura .sticker-inv{
+  background:var(--preto);
+  border:2px solid var(--branco);
+  box-shadow:5px 5px 0 var(--branco);
+}
+
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:96px;padding-bottom:52px}
+.hero h1{font-family:var(--serif);font-style:italic;line-height:1.02;letter-spacing:.01em;margin-top:22px;text-transform:uppercase}
+.hero h1 .l1{display:block;font-size:clamp(1.1rem,5.4vw,2.5rem);font-weight:600}
+.hero h1 .l2{display:block;font-size:clamp(2.4rem,14vw,6.8rem);font-weight:700}
+.hero h1 .l3{display:block;font-size:clamp(1.2rem,6.2vw,3rem);font-weight:700;margin-top:12px}
+.hero h1 .l3 span{
+  background:var(--preto);color:var(--branco);
+  padding:.04em .22em .08em;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone;
+}
+.hero .sub{
+  margin-top:22px;
+  font-family:var(--sans);font-weight:600;font-size:.7rem;
+  letter-spacing:.38em;text-transform:uppercase;text-indent:.38em;
+}
+.retrato{margin:44px auto 0;width:180px;transform:rotate(-2deg)}
+.retrato .borda{padding:6px;background:var(--branco);border:2px solid var(--preto);box-shadow:4px 4px 0 var(--preto)}
+.retrato img{width:100%}
+.retrato figcaption{
+  margin-top:10px;
+  font-family:var(--sans);font-weight:600;font-size:.54rem;
+  letter-spacing:.32em;text-transform:uppercase;text-indent:.32em;opacity:.72;
+}
+.filete{margin:40px auto 0;width:1px;height:44px;background:linear-gradient(to bottom,transparent,var(--preto))}
+
+.cena-camera{padding:80px 24px}
+.camera-ico{width:104px;height:74px;margin:0 auto 24px;display:block;color:var(--branco);animation:flutua 4.4s ease-in-out infinite}
+.camera-ico svg{width:100%;height:100%}
+.cena-camera .titulo{
+  font-family:var(--serif);font-style:italic;font-weight:700;
+  font-size:clamp(1.9rem,8.5vw,3.2rem);line-height:1.08;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .8s ease .2s,transform .8s ease .2s;
+}
+.cena-camera .titulo em{
+  font-style:italic;
+  display:inline-block;
+  background:var(--branco);color:var(--preto);
+  padding:.02em .22em .08em;
+  margin-top:.18em;
+}
+.cena-camera .apoio{
+  margin-top:18px;
+  font-family:var(--sans);font-weight:700;font-size:.78rem;
+  letter-spacing:.34em;text-transform:uppercase;text-indent:.34em;
+  opacity:0;transition:opacity .8s ease .7s;
+}
+.cena-camera .titulo.on{opacity:1;transform:none}
+.cena-camera .apoio.on{opacity:.9}
+
+.quiz-tit h2{
+  font-family:var(--serif);font-style:italic;font-weight:700;
+  font-size:clamp(2.4rem,10.5vw,4.8rem);line-height:1.06;margin-top:18px;
+}
+.quiz-tit h2 .marcado{
+  display:inline-block;
+  background:var(--preto);color:var(--branco);
+  padding:.04em .26em .1em;margin-top:.14em;
+}
+.quiz-tit .gancho{
+  margin:18px auto 0;max-width:34ch;
+  font-family:var(--serif);font-style:italic;font-weight:600;
+  font-size:clamp(1.1rem,4.6vw,1.35rem);line-height:1.4;
+}
+.quiz-tit .apoio{
+  margin-top:14px;font-family:var(--sans);font-weight:600;font-size:.68rem;
+  letter-spacing:.32em;text-transform:uppercase;text-indent:.32em;opacity:.72;
+}
+
+.selo{
+  position:absolute;top:-20px;right:-8px;z-index:2;
+  width:76px;height:76px;border-radius:50%;
+  background:var(--preto);color:var(--branco);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-weight:700;font-size:.74rem;
+  letter-spacing:.16em;text-transform:uppercase;text-indent:.16em;
+  border:2px solid var(--branco);box-shadow:0 0 0 2px var(--preto);
+  animation:balanca 3.4s ease-in-out infinite;
+}
+@keyframes balanca{0%,100%{transform:rotate(7deg)}50%{transform:rotate(14deg) scale(1.05)}}
+
+.quiz{margin:44px auto 0;max-width:500px;text-align:center;position:relative}
+.quiz-bar{height:4px;background:var(--branco);border:3px solid var(--preto);border-bottom:none}
+.quiz-bar i{display:block;height:100%;width:0%;background:var(--preto);transition:width .45s cubic-bezier(.7,0,.2,1)}
+.quiz .quiz-inner{border-width:3px;box-shadow:7px 7px 0 var(--preto)}
+.quiz-inner{background:var(--branco);border:2px solid var(--preto);border-top:none;padding:36px 28px;box-shadow:5px 5px 0 var(--preto)}
+.passo-label{
+  font-family:var(--sans);font-weight:600;font-size:.62rem;
+  letter-spacing:.3em;text-transform:uppercase;text-indent:.3em;
+  display:block;opacity:.68;margin-bottom:20px;
+}
+.step{display:none}
+.step.ativo{display:block}
+.step h3{
+  font-family:var(--serif);font-style:italic;font-weight:700;
+  font-size:clamp(1.3rem,5.5vw,2.2rem);line-height:1.15;margin-bottom:24px;
+}
+.opcoes{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.opcao{
+  background:transparent;border:2px solid var(--preto);
+  padding:14px 16px;cursor:pointer;
+  font-family:var(--sans);font-weight:600;font-size:.85rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  transition:all .3s ease;text-align:left;
+}
+.opcao:hover{background:rgba(22,22,22,.08)}
+.opcao.sel{background:var(--preto);color:var(--branco)}
+.campo{
+  width:100%;border:none;border-bottom:2px solid var(--preto);
+  padding:10px 0;font-family:var(--serif);font-size:1.1rem;
+  background:transparent;outline:none;
+}
+.campo::placeholder{color:rgba(22,22,22,.4);font-style:italic}
+.campo:focus{border-bottom-color:var(--preto)}
+.erro{display:none;color:#c00;font-family:var(--sans);font-size:.7rem;margin-top:8px}
+.erro.mostra{display:block}
+
+.laudo{display:none;text-align:center;padding:36px 28px;background:var(--preto);color:var(--branco);border:3px solid var(--preto);box-shadow:7px 7px 0 rgba(22,22,22,.2)}
+.laudo.ativo{display:block}
+.laudo-titulo{
+  font-family:var(--serif);font-style:italic;font-weight:700;
+  font-size:clamp(1.3rem,5.5vw,2.2rem);line-height:1.15;margin-bottom:20px;
+}
+.laudo-titulo .marcado{
+  background:var(--branco);color:var(--preto);
+  padding:.04em .22em .08em;
+}
+.laudo-texto{
+  font-family:var(--serif);font-style:italic;font-weight:500;
+  font-size:clamp(.95rem,3.8vw,1.1rem);line-height:1.6;margin-bottom:28px;
+}
+.laudo-texto b{font-weight:700}
+.botoes{display:flex;gap:12px;flex-direction:column}
+.btn{
+  border:2px solid var(--branco);background:var(--branco);color:var(--preto);
+  padding:14px 24px;font-family:var(--sans);font-weight:700;font-size:.82rem;
+  letter-spacing:.2em;text-transform:uppercase;cursor:pointer;
+  text-decoration:none;display:inline-block;transition:all .3s ease;
+}
+.escura .btn{border-color:var(--branco);background:transparent;color:var(--branco)}
+.escura .btn:hover{background:var(--branco);color:var(--preto)}
+.btn.enviar{background:var(--preto);color:var(--branco);border-color:var(--preto)}
+.btn:hover{opacity:.85}
+#btn-whats{background:var(--branco);color:var(--preto);border-color:var(--branco)}
+
+.contatoEsquerda{display:flex;justify-content:center;align-items:center;gap:44px;flex-wrap:wrap;margin-bottom:36px}
+.contatoFoto{width:190px;transform:rotate(2deg)}
+.contatoFoto .borda{padding:6px;background:var(--preto);border:2px solid var(--branco);box-shadow:4px 4px 0 var(--branco)}
+.contatoFoto img{width:100%}
+.contatoTit{
+  font-family:var(--serif);font-style:italic;font-weight:700;
+  font-size:clamp(1.9rem,8.5vw,3.2rem);line-height:1.08;
+  max-width:22ch;
+}
+.contatoTit em{
+  display:inline-block;
+  background:var(--branco);color:var(--preto);
+  padding:.02em .22em .08em;
+  margin-top:.18em;
+}
+
+.oficio-grid{
+  margin-top:48px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
+  gap:24px;max-width:380px;margin-left:auto;margin-right:auto;
+}
+.oficio-item{
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  font-family:var(--sans);font-weight:700;font-size:.8rem;
+  letter-spacing:.24em;text-transform:uppercase;text-indent:.24em;
+}
+.ico{
+  width:64px;height:64px;display:flex;align-items:center;justify-content:center;
+  color:var(--preto);animation:flutua 4.4s ease-in-out infinite;
+}
+.oficio-item:nth-child(2) .ico{animation-delay:.5s}
+.oficio-item:nth-child(3) .ico{animation-delay:1s}
+.oficio-item:nth-child(4) .ico{animation-delay:1.5s}
+@keyframes flutua{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(-2.5deg)}}
+
+.foot-nome{
+  font-family:var(--serif);font-style:italic;font-weight:700;
+  font-size:clamp(2.2rem,9vw,4.8rem);line-height:.95;
+  margin:40px 0 28px;
+}
+.foot-meta{
+  display:flex;justify-content:center;align-items:center;gap:18px;
+  font-family:var(--sans);font-weight:600;font-size:.7rem;
+  letter-spacing:.3em;text-transform:uppercase;text-indent:.3em;
+  opacity:.72;
+}
+.foot-meta span{display:block}
+
+.faisca{
+  position:absolute;width:24px;height:24px;color:var(--preto);
+  animation:cintila 2s ease-in-out infinite;
+}
+.faisca svg{width:100%;height:100%;display:block}
+@keyframes cintila{0%,100%{transform:scale(.55) rotate(0);opacity:.3}50%{transform:scale(1.15) rotate(20deg);opacity:1}}
+
+#cta-fixo{
+  position:fixed;bottom:0;left:0;right:0;z-index:50;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 24px;background:var(--preto);color:var(--branco);
+  opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;
+  gap:16px;font-family:var(--sans);
+}
+#cta-fixo.mostra{opacity:1;visibility:visible}
+#cta-fixo .txt{font-weight:600;font-size:.8rem;line-height:1.3}
+#cta-fixo .txt b{font-weight:700}
+#cta-fixo a{
+  background:var(--branco);color:var(--preto);
+  padding:8px 16px;border-radius:4px;
+  font-weight:700;font-size:.7rem;text-decoration:none;
+  white-space:nowrap;transition:all .3s ease;
+}
+#cta-fixo a:hover{opacity:.85}
+
+@media(min-width:640px){
+  .contatoEsquerda{gap:52px;justify-content:flex-start}
+  .contatoTit{text-align:left}
+  .contatoFoto{width:200px}
+  #cta-fixo{padding:20px 32px;gap:20px}
+  #cta-fixo .txt{font-size:.85rem}
+}
+</style>
+</head>
+<body>
+
+<div id="flash"></div>
+
+<div id="intro">
+  <div class="nome">Beatriz</div>
+  <div class="risco"></div>
+  <div class="sub">Apresenta</div>
+</div>
+
+<div class="masthead">
+  <span class="rec"><i></i> AO VIVO</span>
+  <span class="rec">REDE <i></i></span>
+</div>
+
+<header class="hero fundo-dots">
+  <div class="centro rev">
+    <h1>
+      <span class="l1">O que</span>
+      <span class="l2">sua marca</span>
+      <span class="l3">está <span>comunicando?</span></span>
+    </h1>
+    <p class="sub">Estrategista de marca · Direção criativa</p>
+    <figure class="retrato">
+      <div class="borda">
+        <img src="data:image/jpeg;base64,{{HERO_B64}}" alt="Beatriz">
+      </div>
+      <figcaption>Boa Vista · RR</figcaption>
+    </figure>
+    <div class="filete"></div>
+  </div>
+</header>
+
+<section class="cena-camera escura" id="camera">
+  <div class="centro">
+    <svg class="camera-ico" viewBox="0 0 104 74" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+      <rect x="6" y="10" width="92" height="58" rx="6"/>
+      <line x1="6" y1="18" x2="98" y2="18"/>
+      <rect x="15" y="2" width="24" height="10" rx="2"/>
+      <rect x="69" y="24" width="20" height="18" rx="2"/>
+      <circle cx="79" cy="33" r="9"/>
+      <circle cx="79" cy="33" r="5.5"/>
+      <circle cx="79" cy="33" r="2"/>
+      <line x1="8" y1="8" x2="96" y2="8"/>
+      <line x1="8" y1="14" x2="96" y2="14"/>
+      <line x1="8" y1="66" x2="96" y2="66"/>
+      <line x1="8" y1="72" x2="96" y2="72"/>
+      <circle cx="30" cy="28" r="1.4" fill="currentColor"/>
+    </svg>
+    <h2 class="titulo" id="frase-flash">
+      Foi assim que eu<br><em>capturei sua atenção.</em>
+    </h2>
+    <p class="apoio" id="gancho-flash">Agora vem a parte importante</p>
+  </div>
+</section>
+
+<section class="fundo-stars" id="diagnostico">
+  <div class="centro quiz-tit rev">
+    <p class="mini">Gratuito · leva 1 minuto</p>
+    <h2><b>Diagnóstico</b> de <span class="marcado">Percepção</span></h2>
+    <p class="gancho">O que a sua marca comunica <b>sem você perceber?</b> Responda e receba a leitura na hora.</p>
+  </div>
+
+  <div class="quiz rev" id="quiz">
+    <span class="selo" aria-hidden="true">Grátis</span>
+    <div class="quiz-bar"><i id="barra"></i></div>
+    <div class="quiz-inner">
+      <div id="passo-label" class="passo-label"></div>
+
+      <div class="step ativo" data-step="0">
+        <h3>Como você se chama?</h3>
+        <input type="text" id="q-nome" class="campo" placeholder="Seu nome">
+        <div id="erro-0" class="erro">Preenchimento obrigatório</div>
+      </div>
+
+      <div class="step" data-step="1">
+        <h3>Qual é o seu negócio?</h3>
+        <input type="text" id="q-negocio" class="campo" placeholder="Ex: Confeitaria, consultoria...">
+        <div id="erro-1" class="erro">Preenchimento obrigatório</div>
+      </div>
+
+      <div class="step" data-step="2">
+        <h3>E-mail para receber o resultado</h3>
+        <input type="email" id="q-email" class="campo" placeholder="seu@email.com">
+        <div id="erro-2" class="erro">E-mail inválido</div>
+      </div>
+
+      <div class="step" data-step="3">
+        <h3>Qual é seu faturamento atual?</h3>
+        <div class="opcoes" data-grupo="faturamento">
+          <button class="opcao">Até R$ 5 mil/mês</button>
+          <button class="opcao">R$ 5 a R$ 15 mil</button>
+          <button class="opcao">R$ 15 a R$ 50 mil</button>
+          <button class="opcao">Acima de R$ 50 mil</button>
+        </div>
+        <div id="erro-3" class="erro">Escolha uma opção</div>
+      </div>
+
+      <div class="step" data-step="4">
+        <h3>Qual é seu maior desafio?</h3>
+        <div class="opcoes" data-grupo="desafio">
+          <button class="opcao" data-k="0">Posto e nada acontece</button>
+          <button class="opcao" data-k="1">Pareço igual a todo mundo</button>
+          <button class="opcao" data-k="2">Atraio curioso, não cliente</button>
+          <button class="opcao" data-k="3">Sem tempo pra conteúdo</button>
+        </div>
+        <div id="erro-4" class="erro">Escolha uma opção</div>
+      </div>
+
+      <div class="laudo" id="laudo">
+        <h2 class="laudo-titulo" id="laudo-titulo"></h2>
+        <p class="laudo-texto" id="laudo-texto"></p>
+        <div class="botoes">
+          <a id="btn-whats" class="btn" target="_blank">Conversar no WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="botoes" id="botoes-nav" style="margin-top:24px">
+        <button id="avancar" class="btn"></button>
+        <button id="voltar" class="btn" style="background:transparent;border-color:var(--preto);color:var(--preto)">Voltar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="escura" id="contato">
+  <div class="centro">
+    <div class="contatoEsquerda rev">
+      <div>
+        <h2 class="contatoTit">Fale com quem <em>assina a direção.</em></h2>
+      </div>
+      <figure class="contatoFoto">
+        <div class="borda">
+          <img src="data:image/jpeg;base64,{{FONE_B64}}" alt="WhatsApp">
+        </div>
+      </figure>
+    </div>
+    <div class="botoes rev" style="max-width:500px;margin:48px auto 0">
+      <a href="https://wa.me/5595991348202" class="btn sticker-inv">Conversar no WhatsApp</a>
+      <a href="https://canva.link/2xlrhjhmv5y42te" class="btn sticker-inv">Ver portfólio completo</a>
+    </div>
+  </div>
+</section>
+
+<section class="fundo-dots">
+  <div class="centro rev">
+    <p class="mini">O ofício</p>
+    <div class="oficio-grid">
+      <div class="oficio-item">
+        <span class="ico"><svg viewBox="0 0 44 34" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="40" height="24" rx="3"/><path d="M2 13.5h40"/><rect x="7" y="3.5" width="8" height="4.5" rx="1"/><rect x="29" y="4.5" width="6" height="3.5" rx="1"/><circle cx="26" cy="21.5" r="7"/><circle cx="26" cy="21.5" r="4"/><rect x="6.5" y="17" width="6" height="4.5" rx="1"/><circle cx="38" cy="11" r="1.1"/></svg></span>
+        <span>Captação</span>
+      </div>
+      <div class="oficio-item">
+        <span class="ico"><svg viewBox="0 0 44 34" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14L38 6l1.6 6L5.6 20z"/><rect x="4" y="19" width="35" height="12" rx="1.5"/><path d="M11 12.4l4 4.4M19 10.5l4 4.4M27 8.6l4 4.4"/></svg></span>
+        <span>Roteiro</span>
+      </div>
+      <div class="oficio-item">
+        <span class="ico"><svg viewBox="0 0 44 34" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="2" width="24" height="30" rx="3"/><path d="M20 28h4"/><path d="M15 9h14M15 14h9"/></svg></span>
+        <span>Edição</span>
+      </div>
+      <div class="oficio-item">
+        <span class="ico"><svg viewBox="0 0 44 34" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="17" r="13"/><circle cx="22" cy="17" r="7"/><circle cx="22" cy="17" r="1.6"/></svg></span>
+        <span>Estratégia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="fundo-stars">
+  <span class="faisca" style="top:30%;right:16%;animation-delay:.9s" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 0l2.4 9.6L24 12l-9.6 2.4L12 24l-2.4-9.6L0 12l9.6-2.4z"/></svg></span>
+  <div class="foot-nome">Beatriz</div>
+  <div class="foot-meta">
+    <span>@beatriiz.marketing</span>
+    <span>Boa Vista · RR</span>
+  </div>
+</footer>
+
+<div id="cta-fixo">
+  <span class="txt">O que a sua marca<br><b>está comunicando?</b></span>
+  <a href="#diagnostico">Descobrir · 1 min</a>
+</div>
+
+<script>
+(function(){
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}});
+  },{threshold:.15});
+  document.querySelectorAll('.rev').forEach(function(el){obs.observe(el)});
+
+  var flash=document.getElementById('flash');
+  var frase=document.getElementById('frase-flash');
+  var gancho=document.getElementById('gancho-flash');
+  var reduz=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var obsCam=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        setTimeout(function(){
+          if(!reduz){flash.classList.remove('dispara');void flash.offsetWidth;flash.classList.add('dispara')}
+          frase.classList.add('on');gancho.classList.add('on');
+        },350);
+        obsCam.unobserve(e.target);
+      }
+    });
+  },{threshold:1,rootMargin:'-18% 0px -32% 0px'});
+  obsCam.observe(document.getElementById('camera'));
+
+  var ctaFixo=document.getElementById('cta-fixo');
+  var hero=document.querySelector('.hero');
+  var quizSec=document.getElementById('diagnostico');
+  var heroVisivel=true,quizVisivel=false,concluido=false;
+  function atualizaCta(){
+    ctaFixo.classList.toggle('mostra',!heroVisivel&&!quizVisivel&&!concluido);
+  }
+  new IntersectionObserver(function(es){
+    es.forEach(function(e){heroVisivel=e.isIntersecting});atualizaCta();
+  },{threshold:.2}).observe(hero);
+  new IntersectionObserver(function(es){
+    es.forEach(function(e){quizVisivel=e.isIntersecting});atualizaCta();
+  },{threshold:.15}).observe(quizSec);
+
+  var passos=document.querySelectorAll('.step');
+  var total=5,atual=0;
+  var barra=document.getElementById('barra');
+  var label=document.getElementById('passo-label');
+  var btnAvancar=document.getElementById('avancar');
+  var btnVoltar=document.getElementById('voltar');
+  var respostas={faturamento:'',desafio:'',desafioK:-1};
+
+  document.querySelectorAll('.opcoes').forEach(function(grupo){
+    grupo.querySelectorAll('.opcao').forEach(function(op){
+      op.addEventListener('click',function(){
+        grupo.querySelectorAll('.opcao').forEach(function(o){o.classList.remove('sel')});
+        op.classList.add('sel');
+        respostas[grupo.dataset.grupo]=op.textContent.trim();
+        if(grupo.dataset.grupo==='desafio')respostas.desafioK=+op.dataset.k;
+      });
+    });
+  });
+
+  var laudos=[
+    {t:'Seu problema não é constância. <span class="marcado">É direção.</span>',
+     p:'<b>{nome}</b>, postar sem uma tese de marca é produzir ruído. O algoritmo não esconde você: ele só distribui o que retém. Quando o conteúdo nasce de um posicionamento claro, <b>cada post trabalha pra mesma percepção</b>. É isso que falta no {negocio}.'},
+    {t:'Parecer igual tem um custo: <span class="marcado">você anuncia pro concorrente.</span>',
+     p:'<b>{nome}</b>, quando sua comunicação segue o formato de todo mundo, o cliente enxerga a categoria, não a sua marca. O que diferencia o {negocio} não é estética: é <b>uma tese que só você pode defender</b>. Sem ela, o aplauso vai pra outro caixa.'},
+    {t:'Você não precisa de mais alcance. <span class="marcado">Precisa da mensagem certa.</span>',
+     p:'<b>{nome}</b>, atrair curioso é sintoma de mensagem que fala com todo mundo. E quem fala com todos não é escolhido por ninguém. O ajuste do {negocio} está em <b>quem</b> a comunicação chama e <b>o que</b> promete.'},
+    {t:'Sem sistema, cada post é uma decisão. <span class="marcado">E decisão cansa.</span>',
+     p:'<b>{nome}</b>, marca forte não roda na inspiração do dia: roda em direção definida uma vez e executada em lote. O {negocio} precisa de <b>um calendário estratégico</b> que pense por você, pra sua energia ir pro negócio, não pro feed.'}
+  ];
+
+  function render(){
+    passos.forEach(function(p){p.classList.toggle('ativo',+p.dataset.step===atual)});
+    barra.style.width=Math.min((atual/total)*100,100)+'%';
+    if(atual<total){
+      label.textContent='0'+(atual+1)+' / 05';
+      btnAvancar.textContent=(atual===total-1)?'Gerar meu diagnóstico':'Próxima';
+      btnAvancar.classList.toggle('enviar',atual===total-1);
+      btnAvancar.style.display='';
+      btnVoltar.style.visibility=atual===0?'hidden':'visible';
+    }else{
+      label.textContent='Diagnóstico gerado';
+      btnAvancar.style.display='none';
+      btnVoltar.style.visibility='hidden';
+      barra.style.width='100%';
+      document.getElementById('laudo').classList.add('ativo');
+    }
+    document.querySelectorAll('.erro').forEach(function(e){e.classList.remove('mostra')});
+  }
+
+  function valida(){
+    var e=document.getElementById('erro-'+atual),ok=true;
+    if(atual===0)ok=document.getElementById('q-nome').value.trim().length>1;
+    if(atual===1)ok=document.getElementById('q-negocio').value.trim().length>1;
+    if(atual===2)ok=/^\S+@\S+\.\S+$/.test(document.getElementById('q-email').value.trim());
+    if(atual===3)ok=!!respostas.faturamento;
+    if(atual===4)ok=!!respostas.desafio;
+    if(!ok&&e)e.classList.add('mostra');
+    return ok;
+  }
+
+  function gerarLaudo(){
+    var nome=document.getElementById('q-nome').value.trim().split(' ')[0];
+    var negocio=document.getElementById('q-negocio').value.trim();
+    var email=document.getElementById('q-email').value.trim();
+    var l=laudos[respostas.desafioK]||laudos[0];
+    document.getElementById('laudo-titulo').innerHTML=l.t;
+    document.getElementById('laudo-texto').innerHTML=
+      l.p.replace(/{nome}/g,nome).replace(/{negocio}/g,negocio);
+    var msg='DIAGNOSTICO DE PERCEPCAO\n\n'
+      +'Nome: '+document.getElementById('q-nome').value.trim()+'\n'
+      +'Negocio: '+negocio+'\n'
+      +'E-mail: '+email+'\n'
+      +'Faturamento: '+respostas.faturamento+'\n'
+      +'Maior desafio: '+respostas.desafio+'\n\n'
+      +'Ja recebi a leitura preliminar no site. Quero a analise completa da minha marca.';
+    document.getElementById('btn-whats').href='https://wa.me/5595991348202?text='+encodeURIComponent(msg);
+    concluido=true;atualizaCta();
+  }
+
+  btnAvancar.addEventListener('click',function(){
+    if(!valida())return;
+    if(atual===total-1){gerarLaudo();atual=total}else{atual++}
+    render();
+  });
+  btnVoltar.addEventListener('click',function(){if(atual>0){atual--;render()}});
+
+  document.querySelectorAll('.campo').forEach(function(c){
+    c.addEventListener('keydown',function(ev){
+      if(ev.key==='Enter'){ev.preventDefault();btnAvancar.click()}
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
